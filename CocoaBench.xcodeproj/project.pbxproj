@@ -16,7 +16,6 @@
 		AB239A091257A56500E9FCAB /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		AB239A161257A5AE00E9FCAB /* NLCocoaBench.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLCocoaBench.h; sourceTree = "<group>"; };
 		AB239A171257A5AE00E9FCAB /* NLCocoaBench.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCocoaBench.m; sourceTree = "<group>"; };
-		AB239A211257A65100E9FCAB /* NLCocoaBenchTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLCocoaBenchTest.h; sourceTree = "<group>"; };
 		AB239A221257A65100E9FCAB /* NLCocoaBenchTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCocoaBenchTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -53,7 +52,6 @@
 		AB239A201257A62600E9FCAB /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				AB239A211257A65100E9FCAB /* NLCocoaBenchTest.h */,
 				AB239A221257A65100E9FCAB /* NLCocoaBenchTest.m */,
 			);
 			path = Tests;

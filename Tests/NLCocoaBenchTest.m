@@ -23,7 +23,15 @@
  OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#import "NLCocoaBenchTest.h"
+#import <SenTestingKit/SenTestingKit.h>
+#import "NLCocoaBench.h"
+
+
+@interface NLCocoaBenchTest : SenTestCase {
+    NLCocoaBench *bench;
+}
+
+@end
 
 
 @implementation NLCocoaBenchTest
