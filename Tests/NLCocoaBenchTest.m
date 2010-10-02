@@ -82,6 +82,18 @@
     STAssertNotNil(summary, nil);
 }
 
+- (void)testBenchmarkingWithABlock
+{
+    __block NSString *mustBeSet = nil;
+
+    [bench startProfile:@"someLoop" withBlock:^{
+        mustBeSet = @"with this";
+    }];
+    NSTimeInterval time = [bench profileTime:@"someLoop"];
+    STAssertFalse(time == 0, nil);
+    STAssertNotNil(mustBeSet, nil);
+}
+
 @end
 
 

@@ -36,7 +36,10 @@
 @property (nonatomic, readonly) NSArray *activeProfileNames;
 @property (nonatomic, readonly) NSString *summary;
 
+typedef void (^NLCocoaBenchBlock)();
+
 - (void)startProfile:(NSString *)profileName;
+- (void)startProfile:(NSString *)profileName withBlock:(NLCocoaBenchBlock)block;
 - (void)finishProfile:(NSString *)profileName;
 - (UInt64)profileTime:(NSString *)profileName;
 
