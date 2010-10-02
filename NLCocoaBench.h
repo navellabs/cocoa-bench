@@ -55,3 +55,11 @@
 
 @end
 
+
+@interface NLCBProfileStatsFormatter : NSObject {
+    NSNumberFormatter *numberFormatter;
+}
+
+- (NSString *)stringFromStats:(NLCBProfileStats *)stats;
+
+@end

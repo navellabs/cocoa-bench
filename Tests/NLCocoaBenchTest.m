@@ -126,3 +126,61 @@
 
 @end
 
+
+#pragma mark -
+#pragma mark NLCBProfileStatsFormatterTest
+
+
+@interface NLCBProfileStatsStub : NLCBProfileStats {
+    UInt64 duration;
+}
+- (void)setDuration:(UInt64)newDuration;
+@end
+
+@implementation NLCBProfileStatsStub
+- (void)setDuration:(UInt64)newDuration { duration = newDuration; }
+- (UInt64)duration { return duration; }
+@end
+
+
+@interface NLCBProfileStatsFormatterTest : SenTestCase {
+    NLCBProfileStatsFormatter *formatter;
+    NLCBProfileStatsStub *stats;
+}
+
+@end
+
+
+@implementation NLCBProfileStatsFormatterTest
+
+- (void)setUp
+{
+    stats = [[[NLCBProfileStatsStub alloc] init] autorelease];
+    formatter = [[[NLCBProfileStatsFormatter alloc] init] autorelease];
+}
+
+- (void)testFormattingLessThan1Second
+{
+    [stats setDuration:10];
+    NSString *stringTime = [formatter stringFromStats:stats];
+    STAssertEqualObjects(stringTime, @"10 ns", nil);
+}
+
+- (void)testFormattingGreaterThan1Millisecond
+{
+    [stats setDuration:1540000];
+    NSString *stringTime = [formatter stringFromStats:stats];
+    STAssertEqualObjects(stringTime, @"1.54 ms", nil);    
+}
+
+- (void)testFormattingGreaterThan1Second
+{
+    [stats setDuration:1542000000];
+    NSString *stringTime = [formatter stringFromStats:stats];
+    STAssertEqualObjects(stringTime, @"1.542 s", nil);    
+}
+
+@end
+
+
+

@@ -144,3 +144,54 @@ static inline UInt64 NLCBAbsoluteNanoTime()
 
 @end
 
+
+#pragma mark -
+#pragma mark NLCBProfileStatsFormatter
+
+
+@implementation NLCBProfileStatsFormatter
+
+
+#pragma mark Memory Management
+
+- (void)dealloc
+{
+    [numberFormatter release];
+    [super dealloc];
+}
+
+
+#pragma mark Initialization
+
+- (id)init
+{
+    if (self = [super init]) {
+        numberFormatter = [[NSNumberFormatter alloc] init];
+        [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    }
+    return self;
+}
+
+
+#pragma mark Public Methods
+
+- (NSString *)stringFromStats:(NLCBProfileStats *)stats
+{
+    NSDecimalNumber *newDuration = nil, *duration = [[[NSDecimalNumber alloc]initWithUnsignedLongLong:stats.duration] autorelease];
+    NSString *units = nil;
+
+    if (stats.duration > kSecondScale) {
+        duration = [duration decimalNumberByDividingBy:[[[NSDecimalNumber alloc] initWithUnsignedLong:kSecondScale] autorelease]];
+        units = @"s";
+    } else if (stats.duration > kMillisecondScale) {
+        duration = [duration decimalNumberByDividingBy:[[[NSDecimalNumber alloc] initWithUnsignedLong:kMillisecondScale] autorelease]];
+        units = @"ms";
+    } else {
+        units = @"ns";
+    }
+
+    NSString *numberString = [numberFormatter stringFromNumber:duration];
+    return [NSString stringWithFormat:@"%@ %@", numberString, units];
+}
+
+@end
