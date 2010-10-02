@@ -90,7 +90,10 @@
 
 - (NSString *)summary
 {
-    return @"summary";
+    NLCocoaBenchSummaryFormatter *formatter = [[NLCocoaBenchSummaryFormatter alloc] init];
+    NSString *result = [formatter summarizeProfileNames:allProfileNames forStats:profileStats];
+    [formatter release];
+    return result;
 }
 
 
