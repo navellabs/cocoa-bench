@@ -88,7 +88,7 @@
 {
     __block NSString *mustBeSet = nil;
 
-    [bench startProfile:@"someLoop" withBlock:^{
+    [bench profile:@"someLoop" block:^{
         mustBeSet = @"with this";
     }];
     NSTimeInterval time = [bench profileTime:@"someLoop"];

@@ -92,7 +92,7 @@
 
 #ifdef __BLOCKS__
 
-- (void)startProfile:(NSString *)profileName withBlock:(NLCocoaBenchBlock)block
+- (void)profile:(NSString *)profileName block:(NLCocoaBenchBlock)block
 {
     [self startProfile:profileName];
     block();

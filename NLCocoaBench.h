@@ -44,7 +44,7 @@
 
 typedef void (^NLCocoaBenchBlock)();
 
-- (void)startProfile:(NSString *)profileName withBlock:(NLCocoaBenchBlock)block;
+- (void)profile:(NSString *)profileName block:(NLCocoaBenchBlock)block;
 
 #endif
 
