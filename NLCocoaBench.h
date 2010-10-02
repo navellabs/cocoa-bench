@@ -29,14 +29,16 @@
 
 @interface NLCocoaBench : NSObject {
     NSMutableArray *activeProfileNames;
+    NSMutableArray *allProfileNames;
     NSMutableDictionary *profileStats;
 }
+
+@property (nonatomic, readonly) NSArray *activeProfileNames;
+@property (nonatomic, readonly) NSString *summary;
 
 - (void)startProfile:(NSString *)profileName;
 - (void)finishProfile:(NSString *)profileName;
 - (UInt64)profileTime:(NSString *)profileName;
-
-@property (nonatomic, readonly) NSArray *activeProfileNames;
 
 @end
 

@@ -72,6 +72,16 @@
     STAssertFalse(time == 0, nil);
 }
 
+- (void)testGettingAProfileSummary
+{
+    [bench startProfile:@"someLoop"];
+    [bench finishProfile:@"someLoop"];
+    [bench startProfile:@"otherLoop"];
+    [bench finishProfile:@"otherLoop"];
+    NSString *summary = [bench summary];
+    STAssertNotNil(summary, nil);
+}
+
 @end
 
 

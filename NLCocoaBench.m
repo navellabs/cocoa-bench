@@ -42,6 +42,7 @@
 - (void)dealloc
 {
     [activeProfileNames release];
+    [allProfileNames release];
     [profileStats release];
     [super dealloc];
 }
@@ -50,6 +51,7 @@
 {
     if (self = [super init]) {
         activeProfileNames = [[NSMutableArray alloc] initWithCapacity:20];
+        allProfileNames = [[NSMutableArray alloc] initWithCapacity:20];
         profileStats = [[NSMutableDictionary alloc] initWithCapacity:20];
     }
     return self;
@@ -63,6 +65,7 @@
     NLCBProfileStats *stats = [self fetchOrCreateStatsForName:profileName];
     [stats start];
     [activeProfileNames addObject:profileName];
+    [allProfileNames addObject:profileName];
 }
 
 - (void)finishProfile:(NSString *)profileName
@@ -76,6 +79,11 @@
 {
     NLCBProfileStats *stats = [self fetchOrCreateStatsForName:profileName];
     return stats.duration;
+}
+
+- (NSString *)summary
+{
+    return @"summary";
 }
 
 
