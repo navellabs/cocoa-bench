@@ -24,6 +24,7 @@
  */
 
 #import "NLCocoaBench.h"
+#include <mach/mach_time.h>
 
 @interface NLCocoaBench ()
 
