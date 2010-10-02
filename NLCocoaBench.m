@@ -68,13 +68,6 @@
     [allProfileNames addObject:profileName];
 }
 
-- (void)startProfile:(NSString *)profileName withBlock:(NLCocoaBenchBlock)block
-{
-    [self startProfile:profileName];
-    block();
-    [self finishProfile:profileName];
-}
-
 - (void)finishProfile:(NSString *)profileName
 {
     NLCBProfileStats *stats = [self fetchOrCreateStatsForName:profileName];
@@ -95,6 +88,17 @@
     [formatter release];
     return result;
 }
+
+#ifdef __BLOCKS__
+
+- (void)startProfile:(NSString *)profileName withBlock:(NLCocoaBenchBlock)block
+{
+    [self startProfile:profileName];
+    block();
+    [self finishProfile:profileName];
+}
+
+#endif
 
 
 #pragma mark Private Methods

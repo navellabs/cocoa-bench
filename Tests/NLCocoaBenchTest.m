@@ -82,6 +82,8 @@
     STAssertNotNil(summary, nil);
 }
 
+#ifdef __BLOCKS__
+
 - (void)testBenchmarkingWithABlock
 {
     __block NSString *mustBeSet = nil;
@@ -93,6 +95,8 @@
     STAssertFalse(time == 0, nil);
     STAssertNotNil(mustBeSet, nil);
 }
+
+#endif
 
 @end
 
