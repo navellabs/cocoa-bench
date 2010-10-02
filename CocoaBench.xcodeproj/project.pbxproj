@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AB239A181257A5AE00E9FCAB /* NLCocoaBench.m in Sources */ = {isa = PBXBuildFile; fileRef = AB239A171257A5AE00E9FCAB /* NLCocoaBench.m */; };
 		AB239A231257A65100E9FCAB /* NLCocoaBenchTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AB239A221257A65100E9FCAB /* NLCocoaBenchTest.m */; };
+		AB445A991257DF1B00ECF199 /* NLCocoaBench.m in Sources */ = {isa = PBXBuildFile; fileRef = AB445A981257DF1B00ECF199 /* NLCocoaBench.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AB239A071257A56500E9FCAB /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB239A091257A56500E9FCAB /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
-		AB239A161257A5AE00E9FCAB /* NLCocoaBench.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLCocoaBench.h; sourceTree = "<group>"; };
-		AB239A171257A5AE00E9FCAB /* NLCocoaBench.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCocoaBench.m; sourceTree = "<group>"; };
 		AB239A221257A65100E9FCAB /* NLCocoaBenchTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCocoaBenchTest.m; sourceTree = "<group>"; };
+		AB445A971257DF1B00ECF199 /* NLCocoaBench.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLCocoaBench.h; sourceTree = "<group>"; };
+		AB445A981257DF1B00ECF199 /* NLCocoaBench.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCocoaBench.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,8 +33,7 @@
 		AB2399F51257A4C200E9FCAB = {
 			isa = PBXGroup;
 			children = (
-				AB239A161257A5AE00E9FCAB /* NLCocoaBench.h */,
-				AB239A171257A5AE00E9FCAB /* NLCocoaBench.m */,
+				AB445A961257DF1B00ECF199 /* CocoaBench */,
 				AB239A201257A62600E9FCAB /* Tests */,
 				AB239A081257A56500E9FCAB /* Products */,
 				AB239A091257A56500E9FCAB /* UnitTests-Info.plist */,
@@ -55,6 +54,15 @@
 				AB239A221257A65100E9FCAB /* NLCocoaBenchTest.m */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		AB445A961257DF1B00ECF199 /* CocoaBench */ = {
+			isa = PBXGroup;
+			children = (
+				AB445A971257DF1B00ECF199 /* NLCocoaBench.h */,
+				AB445A981257DF1B00ECF199 /* NLCocoaBench.m */,
+			);
+			path = CocoaBench;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,8 +142,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB239A181257A5AE00E9FCAB /* NLCocoaBench.m in Sources */,
 				AB239A231257A65100E9FCAB /* NLCocoaBenchTest.m in Sources */,
+				AB445A991257DF1B00ECF199 /* NLCocoaBench.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
