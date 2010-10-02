@@ -177,20 +177,31 @@ static inline UInt64 NLCBAbsoluteNanoTime()
 
 - (NSString *)stringFromStats:(NLCBProfileStats *)stats
 {
-    NSDecimalNumber *newDuration = nil, *duration = [[[NSDecimalNumber alloc]initWithUnsignedLongLong:stats.duration] autorelease];
+    NSDecimalNumber *scale = nil,
+        *newDuration = nil,
+        *duration = [[NSDecimalNumber alloc]initWithUnsignedLongLong:stats.duration];
     NSString *units = nil;
 
     if (stats.duration > kSecondScale) {
-        duration = [duration decimalNumberByDividingBy:[[[NSDecimalNumber alloc] initWithUnsignedLong:kSecondScale] autorelease]];
+        scale = [[NSDecimalNumber alloc] initWithUnsignedLong:kSecondScale];
+        newDuration = [duration decimalNumberByDividingBy:scale];
+        [scale release];
+        [duration release];
+        duration = [newDuration retain];
         units = @"s";
     } else if (stats.duration > kMillisecondScale) {
-        duration = [duration decimalNumberByDividingBy:[[[NSDecimalNumber alloc] initWithUnsignedLong:kMillisecondScale] autorelease]];
+        scale = [[NSDecimalNumber alloc] initWithUnsignedLong:kMillisecondScale];
+        newDuration = [duration decimalNumberByDividingBy:scale];
+        [scale release];
+        [duration release];
+        duration = [newDuration retain];
         units = @"ms";
     } else {
         units = @"ns";
     }
 
     NSString *numberString = [numberFormatter stringFromNumber:duration];
+    [duration release];
     return [NSString stringWithFormat:@"%@ %@", numberString, units];
 }
 
