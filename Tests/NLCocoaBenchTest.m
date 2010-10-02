@@ -25,6 +25,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import "NLCocoaBench.h"
+#import "NLCBProfileStatsStub.h"
 
 
 @interface NLCocoaBenchTest : SenTestCase {
@@ -103,20 +104,6 @@
 
 #pragma mark -
 #pragma mark NLCBProfileStatsFormatterTest
-
-
-@interface NLCBProfileStatsStub : NLCBProfileStats {
-    UInt64 duration;
-}
-+ (NLCBProfileStatsStub *)stub;
-- (void)setDuration:(UInt64)newDuration;
-@end
-
-@implementation NLCBProfileStatsStub
-+ (NLCBProfileStatsStub *)stub { return [[[NLCBProfileStatsStub alloc] init]autorelease]; }
-- (void)setDuration:(UInt64)newDuration { duration = newDuration; }
-- (UInt64)duration { return duration; }
-@end
 
 
 @interface NLCBProfileStatsFormatterTest : SenTestCase {
