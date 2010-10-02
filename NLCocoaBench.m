@@ -25,7 +25,122 @@
 
 #import "NLCocoaBench.h"
 
+@interface NLCocoaBench ()
+
+- (NLCBProfileStats *)fetchOrCreateStatsForName:(NSString *)profileName;
+
+@end
+
 
 @implementation NLCocoaBench
 
+@synthesize activeProfileNames;
+
+
+#pragma mark Memory Management
+
+- (void)dealloc
+{
+    [activeProfileNames release];
+    [profileStats release];
+    [super dealloc];
+}
+
+- (id)init
+{
+    if (self = [super init]) {
+        activeProfileNames = [[NSMutableArray alloc] initWithCapacity:20];
+        profileStats = [[NSMutableDictionary alloc] initWithCapacity:20];
+    }
+    return self;
+}
+
+
+#pragma mark Profile Management
+
+- (void)startProfile:(NSString *)profileName
+{
+    NLCBProfileStats *stats = [self fetchOrCreateStatsForName:profileName];
+    [stats start];
+    [activeProfileNames addObject:profileName];
+}
+
+- (void)finishProfile:(NSString *)profileName
+{
+    NLCBProfileStats *stats = [self fetchOrCreateStatsForName:profileName];
+    [stats stop];
+    [activeProfileNames removeObject:profileName];
+}
+
+- (UInt64)profileTime:(NSString *)profileName
+{
+    NLCBProfileStats *stats = [self fetchOrCreateStatsForName:profileName];
+    return stats.duration;
+}
+
+
+#pragma mark Private Methods
+
+- (NLCBProfileStats *)fetchOrCreateStatsForName:(NSString *)profileName
+{
+    NLCBProfileStats *stats = [profileStats objectForKey:profileName];
+    if (!stats) {
+        stats = [[[NLCBProfileStats alloc] init] autorelease];
+        [profileStats setObject:stats forKey:profileName];
+    }
+    return stats;
+}
+
+
 @end
+
+
+#pragma mark -
+#pragma mark NLCBProfileStats
+
+
+@implementation NLCBProfileStats
+
+@synthesize name;
+@synthesize startTime, stopTime;
+
+
+#pragma mark Memory Management
+
+- (void)dealloc
+{
+    self.name = nil;
+    [super dealloc];
+}
+
+
+static inline UInt64 NLCBAbsoluteNanoTime()
+{
+    UInt64 time = mach_absolute_time();
+    Nanoseconds timeNano = AbsoluteToNanoseconds(*(AbsoluteTime *) &time);
+    return *(uint64_t *)&timeNano;
+}
+
+#pragma mark Public Methods
+
+- (void)start
+{
+    startTime = NLCBAbsoluteNanoTime();
+}
+
+- (void)stop
+{
+    stopTime = NLCBAbsoluteNanoTime();
+}
+
+
+#pragma mark Properties
+
+- (UInt64)duration
+{
+    return stopTime - startTime;
+}
+
+
+@end
+

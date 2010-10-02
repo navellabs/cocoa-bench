@@ -146,6 +146,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 			};
 			name = Debug;
 		};

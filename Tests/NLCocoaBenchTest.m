@@ -36,4 +36,93 @@
 
 @implementation NLCocoaBenchTest
 
+- (void)setUp
+{
+    [super setUp];
+    bench = [[[NLCocoaBench alloc] init] autorelease];
+}
+
+- (void)testStartingAProfile
+{
+    [bench startProfile:@"someLoop"];
+    STAssertEquals((int)[bench.activeProfileNames count], (int)1, nil);
+    STAssertEquals([bench.activeProfileNames objectAtIndex:0], @"someLoop", nil);
+}
+
+- (void)testFinishingAProfileRemovesItFromTheActiveList
+{
+    [bench startProfile:@"someLoop"];
+    [bench finishProfile:@"someLoop"];
+    STAssertEquals((int)[bench.activeProfileNames count], (int)0, nil);
+}
+
+- (void)testStartingAnotherProfileAddsItToTheActiveList
+{
+    [bench startProfile:@"someLoop"];
+    [bench startProfile:@"innerLoop"];
+    STAssertEquals((int)[bench.activeProfileNames count], (int)2, nil);
+    STAssertEqualObjects(bench.activeProfileNames, ([NSArray arrayWithObjects:@"someLoop", @"innerLoop", nil]), nil);
+}
+
+- (void)testGettingAProfilesTime
+{
+    [bench startProfile:@"someLoop"];
+    [bench finishProfile:@"someLoop"];
+    NSTimeInterval time = [bench profileTime:@"someLoop"];
+    STAssertFalse(time == 0, nil);
+}
+
 @end
+
+
+#pragma mark -
+#pragma mark NLCBProfileStats object tests
+
+
+@interface NLCBProfileStatsTest : SenTestCase {
+    NLCBProfileStats *stats;
+}
+
+@end
+
+@implementation NLCBProfileStatsTest
+
+- (void)setUp
+{
+    stats = [[[NLCBProfileStats alloc] init] autorelease];
+}
+
+- (void)testProfileNameProperty
+{
+    stats.name = @"someName";
+    STAssertEqualObjects(stats.name, @"someName", nil);
+}
+
+- (void)testProfileStartTimeProperty
+{
+    stats.startTime = 1;
+    STAssertEquals(stats.startTime, (UInt64)1, nil);
+}
+
+- (void)testProfileEndTimeProperty
+{
+    stats.stopTime = 1;
+    STAssertEquals(stats.stopTime, (UInt64)1, nil);
+}
+
+- (void)testProfileDurationProperty
+{
+    stats.startTime = 1;
+    stats.stopTime = 2;
+    STAssertEquals(stats.duration, (UInt64)1, nil);
+}
+
+- (void)testTiming
+{
+    [stats start];
+    [stats stop];
+    STAssertFalse(stats.duration == 0, nil);
+}
+
+@end
+

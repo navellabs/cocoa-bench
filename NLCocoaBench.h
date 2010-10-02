@@ -24,10 +24,34 @@
  */
 
 #import <Foundation/Foundation.h>
+#include <mach/clock.h>
 
 
 @interface NLCocoaBench : NSObject {
-
+    NSMutableArray *activeProfileNames;
+    NSMutableDictionary *profileStats;
 }
 
+- (void)startProfile:(NSString *)profileName;
+- (void)finishProfile:(NSString *)profileName;
+- (UInt64)profileTime:(NSString *)profileName;
+
+@property (nonatomic, readonly) NSArray *activeProfileNames;
+
 @end
+
+
+@interface NLCBProfileStats : NSObject {
+    NSString *name;
+    UInt64 startTime, stopTime;
+}
+
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic) UInt64 startTime, stopTime;
+@property (nonatomic, readonly) UInt64 duration;
+
+- (void)start;
+- (void)stop;
+
+@end
+
