@@ -61,7 +61,13 @@
 @interface NLCBProfileStatsFormatter : NSObject {
     NSNumberFormatter *numberFormatter;
 }
-
 - (NSString *)stringFromStats:(NLCBProfileStats *)stats;
+@end
+
+
+@interface NLCocoaBenchSummaryFormatter : NSObject {
+}
+
+- (NSString *)summarizeProfileNames:(NSArray *)names forStats:(NSDictionary *)stats;
 
 @end

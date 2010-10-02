@@ -144,10 +144,12 @@
 @interface NLCBProfileStatsStub : NLCBProfileStats {
     UInt64 duration;
 }
++ (NLCBProfileStatsStub *)stub;
 - (void)setDuration:(UInt64)newDuration;
 @end
 
 @implementation NLCBProfileStatsStub
++ (NLCBProfileStatsStub *)stub { return [[[NLCBProfileStatsStub alloc] init]autorelease]; }
 - (void)setDuration:(UInt64)newDuration { duration = newDuration; }
 - (UInt64)duration { return duration; }
 @end
@@ -165,7 +167,7 @@
 
 - (void)setUp
 {
-    stats = [[[NLCBProfileStatsStub alloc] init] autorelease];
+    stats = [NLCBProfileStatsStub stub];
     formatter = [[[NLCBProfileStatsFormatter alloc] init] autorelease];
 }
 
@@ -193,4 +195,37 @@
 @end
 
 
+#pragma mark -
+#pragma mark NLCocoaBenchSummaryFormatterTest
 
+
+@interface NLCocoaBenchSummaryFormatterTest : SenTestCase {
+    NLCocoaBenchSummaryFormatter *formatter;
+}
+
+@end
+
+
+@implementation NLCocoaBenchSummaryFormatterTest
+
+- (void)setUp
+{
+    formatter = [[[NLCocoaBenchSummaryFormatter alloc] init] autorelease];
+}
+
+- (void)testIteratesOverAllProfileNamesAndFormatsOutput
+{
+    NLCBProfileStatsStub *stub1 = [NLCBProfileStatsStub stub], *stub2 = [NLCBProfileStatsStub stub];
+    [stub1 setDuration:1];
+    [stub2 setDuration:2];
+    NSArray *names = [NSArray arrayWithObjects:@"loop one", @"loop again", nil];
+    NSDictionary *stats = [NSDictionary dictionaryWithObjectsAndKeys:
+                           stub1, @"loop one",
+                           stub2, @"loop again",
+                           nil];
+    NSString *summary = [formatter summarizeProfileNames:names forStats:stats];
+    NSString *expected = @"Cocoa Bench Summary:\nloop one - 1 ns\nloop again - 2 ns";
+    STAssertEqualObjects(summary, expected, nil);
+}
+
+@end
