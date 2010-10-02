@@ -1,6 +1,6 @@
 /*
  Copyright (c) 2010 Navel Labs, Ltd.
-
+ 
  Permission is hereby granted, free of charge, to any person
  obtaining a copy of this software and associated documentation
  files (the "Software"), to deal in the Software without
@@ -9,10 +9,10 @@
  copies of the Software, and to permit persons to whom the
  Software is furnished to do so, subject to the following
  conditions:
-
+ 
  The above copyright notice and this permission notice shall be
  included in all copies or substantial portions of the Software.
-
+ 
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -23,46 +23,53 @@
  OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#import <Foundation/Foundation.h>
-#include <mach/clock.h>
-
-#include "NLCBProfileStats.h"
+#import <SenTestingKit/SenTestingKit.h>
+#import "NLCBProfileStats.h"
 
 
-@interface NLCocoaBench : NSObject {
-    NSMutableArray *activeProfileNames;
-    NSMutableArray *allProfileNames;
-    NSMutableDictionary *profileStats;
+@interface NLCBProfileStatsTest : SenTestCase {
+    NLCBProfileStats *stats;
 }
-
-@property (nonatomic, readonly) NSArray *activeProfileNames;
-@property (nonatomic, readonly) NSString *summary;
-
-- (void)startProfile:(NSString *)profileName;
-- (void)finishProfile:(NSString *)profileName;
-- (UInt64)profileTime:(NSString *)profileName;
-
-#ifdef __BLOCKS__
-
-typedef void (^NLCocoaBenchBlock)();
-
-- (void)profile:(NSString *)profileName block:(NLCocoaBenchBlock)block;
-
-#endif
 
 @end
 
+@implementation NLCBProfileStatsTest
 
-@interface NLCBProfileStatsFormatter : NSObject {
-    NSNumberFormatter *numberFormatter;
-}
-- (NSString *)stringFromStats:(NLCBProfileStats *)stats;
-@end
-
-
-@interface NLCocoaBenchSummaryFormatter : NSObject {
+- (void)setUp
+{
+    stats = [[[NLCBProfileStats alloc] init] autorelease];
 }
 
-- (NSString *)summarizeProfileNames:(NSArray *)names forStats:(NSDictionary *)stats;
+- (void)testProfileNameProperty
+{
+    stats.name = @"someName";
+    STAssertEqualObjects(stats.name, @"someName", nil);
+}
+
+- (void)testProfileStartTimeProperty
+{
+    stats.startTime = 1;
+    STAssertEquals(stats.startTime, (UInt64)1, nil);
+}
+
+- (void)testProfileEndTimeProperty
+{
+    stats.stopTime = 1;
+    STAssertEquals(stats.stopTime, (UInt64)1, nil);
+}
+
+- (void)testProfileDurationProperty
+{
+    stats.startTime = 1;
+    stats.stopTime = 2;
+    STAssertEquals(stats.duration, (UInt64)1, nil);
+}
+
+- (void)testTiming
+{
+    [stats start];
+    [stats stop];
+    STAssertFalse(stats.duration == 0, nil);
+}
 
 @end

@@ -102,58 +102,6 @@
 
 
 #pragma mark -
-#pragma mark NLCBProfileStats object tests
-
-
-@interface NLCBProfileStatsTest : SenTestCase {
-    NLCBProfileStats *stats;
-}
-
-@end
-
-@implementation NLCBProfileStatsTest
-
-- (void)setUp
-{
-    stats = [[[NLCBProfileStats alloc] init] autorelease];
-}
-
-- (void)testProfileNameProperty
-{
-    stats.name = @"someName";
-    STAssertEqualObjects(stats.name, @"someName", nil);
-}
-
-- (void)testProfileStartTimeProperty
-{
-    stats.startTime = 1;
-    STAssertEquals(stats.startTime, (UInt64)1, nil);
-}
-
-- (void)testProfileEndTimeProperty
-{
-    stats.stopTime = 1;
-    STAssertEquals(stats.stopTime, (UInt64)1, nil);
-}
-
-- (void)testProfileDurationProperty
-{
-    stats.startTime = 1;
-    stats.stopTime = 2;
-    STAssertEquals(stats.duration, (UInt64)1, nil);
-}
-
-- (void)testTiming
-{
-    [stats start];
-    [stats stop];
-    STAssertFalse(stats.duration == 0, nil);
-}
-
-@end
-
-
-#pragma mark -
 #pragma mark NLCBProfileStatsFormatterTest
 
 

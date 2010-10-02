@@ -119,56 +119,6 @@
 
 
 #pragma mark -
-#pragma mark NLCBProfileStats
-
-
-@implementation NLCBProfileStats
-
-@synthesize name;
-@synthesize startTime, stopTime;
-
-
-#pragma mark Memory Management
-
-- (void)dealloc
-{
-    self.name = nil;
-    [super dealloc];
-}
-
-
-static inline UInt64 NLCBAbsoluteNanoTime()
-{
-    UInt64 time = mach_absolute_time();
-    Nanoseconds timeNano = AbsoluteToNanoseconds(*(AbsoluteTime *) &time);
-    return *(uint64_t *)&timeNano;
-}
-
-#pragma mark Public Methods
-
-- (void)start
-{
-    startTime = NLCBAbsoluteNanoTime();
-}
-
-- (void)stop
-{
-    stopTime = NLCBAbsoluteNanoTime();
-}
-
-
-#pragma mark Properties
-
-- (UInt64)duration
-{
-    return stopTime - startTime;
-}
-
-
-@end
-
-
-#pragma mark -
 #pragma mark NLCBProfileStatsFormatter
 
 

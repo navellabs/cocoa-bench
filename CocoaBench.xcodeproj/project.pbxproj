@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		AB239A231257A65100E9FCAB /* NLCocoaBenchTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AB239A221257A65100E9FCAB /* NLCocoaBenchTest.m */; };
 		AB445A991257DF1B00ECF199 /* NLCocoaBench.m in Sources */ = {isa = PBXBuildFile; fileRef = AB445A981257DF1B00ECF199 /* NLCocoaBench.m */; };
+		AB445AA61257DF4000ECF199 /* NLCBProfileStats.m in Sources */ = {isa = PBXBuildFile; fileRef = AB445AA51257DF4000ECF199 /* NLCBProfileStats.m */; };
+		AB445AAE1257DFAF00ECF199 /* NLCBProfileStatsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AB445AAD1257DFAF00ECF199 /* NLCBProfileStatsTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -17,6 +19,9 @@
 		AB239A221257A65100E9FCAB /* NLCocoaBenchTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCocoaBenchTest.m; sourceTree = "<group>"; };
 		AB445A971257DF1B00ECF199 /* NLCocoaBench.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLCocoaBench.h; sourceTree = "<group>"; };
 		AB445A981257DF1B00ECF199 /* NLCocoaBench.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCocoaBench.m; sourceTree = "<group>"; };
+		AB445AA41257DF4000ECF199 /* NLCBProfileStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLCBProfileStats.h; sourceTree = "<group>"; };
+		AB445AA51257DF4000ECF199 /* NLCBProfileStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCBProfileStats.m; sourceTree = "<group>"; };
+		AB445AAD1257DFAF00ECF199 /* NLCBProfileStatsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCBProfileStatsTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				AB239A221257A65100E9FCAB /* NLCocoaBenchTest.m */,
+				AB445AAD1257DFAF00ECF199 /* NLCBProfileStatsTest.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -61,6 +67,8 @@
 			children = (
 				AB445A971257DF1B00ECF199 /* NLCocoaBench.h */,
 				AB445A981257DF1B00ECF199 /* NLCocoaBench.m */,
+				AB445AA41257DF4000ECF199 /* NLCBProfileStats.h */,
+				AB445AA51257DF4000ECF199 /* NLCBProfileStats.m */,
 			);
 			path = CocoaBench;
 			sourceTree = "<group>";
@@ -144,6 +152,8 @@
 			files = (
 				AB239A231257A65100E9FCAB /* NLCocoaBenchTest.m in Sources */,
 				AB445A991257DF1B00ECF199 /* NLCocoaBench.m in Sources */,
+				AB445AA61257DF4000ECF199 /* NLCBProfileStats.m in Sources */,
+				AB445AAE1257DFAF00ECF199 /* NLCBProfileStatsTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
