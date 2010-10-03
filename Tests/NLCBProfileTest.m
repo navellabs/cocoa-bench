@@ -91,10 +91,9 @@
 - (void)testDescription
 {
     profile.name = @"some profile";
-    profile.whenStopped = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
     profile.startTime = 0;
     profile.stopTime = 1;
-    STAssertEqualObjects([profile description], @"2000-12-31 19:00:00 -0500: some profile - 1 ns", nil);
+    STAssertEqualObjects([profile description], @"some profile - 1 ns", nil);
 }
 
 @end
