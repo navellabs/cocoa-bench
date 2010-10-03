@@ -26,29 +26,18 @@
  */
 
 #import "NLCocoaBench.h"
-#import "NLCBProfile.h"
 
-@interface NLCocoaBench ()
-- (NLCBProfile *)fetchOrCreateStatsForName:(NSString *)profileName;
-@end
 
 static NLCocoaBench *sharedNLCocoaBench = nil;
 
 @implementation NLCocoaBench
 
-@synthesize activeProfileNames;
-
 
 #pragma mark Recommended Class Methods
 
-+ (void)startProfile:(NSString *)profileName
++ (NLCBProfile *)startProfile:(NSString *)profileName
 {
-    [[self sharedBench] startProfile:profileName];
-}
-
-+ (void)finishProfile:(NSString *)profileName
-{
-    [[self sharedBench] finishProfile:profileName];
+    return [[self sharedBench] startProfile:profileName];
 }
 
 + (NLCocoaBench *)sharedBench
@@ -62,79 +51,33 @@ static NLCocoaBench *sharedNLCocoaBench = nil;
 }
 
 
-#pragma mark Memory Management
-
-- (void)dealloc
-{
-    [activeProfileNames release];
-    [allProfileNames release];
-    [profileStats release];
-    [super dealloc];
-}
-
-- (id)init
-{
-    if (self = [super init]) {
-        activeProfileNames = [[NSMutableArray alloc] initWithCapacity:20];
-        allProfileNames = [[NSMutableArray alloc] initWithCapacity:20];
-        profileStats = [[NSMutableDictionary alloc] initWithCapacity:20];
-    }
-    return self;
-}
-
-
 #pragma mark Profile Management
 
-- (void)startProfile:(NSString *)profileName
+- (NLCBProfile *)startProfile:(NSString *)profileName
 {
-    NLCBProfile *stats = [self fetchOrCreateStatsForName:profileName];
-    [stats start];
-    [activeProfileNames addObject:profileName];
-    [allProfileNames addObject:profileName];
-}
-
-- (void)finishProfile:(NSString *)profileName
-{
-    NLCBProfile *stats = [self fetchOrCreateStatsForName:profileName];
-    [stats stop];
-    [activeProfileNames removeObject:profileName];
-}
-
-- (UInt64)profileTime:(NSString *)profileName
-{
-    NLCBProfile *stats = [self fetchOrCreateStatsForName:profileName];
-    return stats.duration;
+    NLCBProfile *profile = [[[NLCBProfile alloc] init] autorelease];
+    profile.name = profileName;
+    [profile start];
+    return profile;
 }
 
 
 #ifdef __BLOCKS__
 
-+ (void)profile:(NSString *)profileName block:(NLCocoaBenchBlock)block
++ (NLCBProfile *)profile:(NSString *)profileName block:(NLCocoaBenchBlock)block
 {
-    [[self sharedBench] profile:profileName block:block];
+    return [[self sharedBench] profile:profileName block:block];
 }
 
-- (void)profile:(NSString *)profileName block:(NLCocoaBenchBlock)block
+- (NLCBProfile *)profile:(NSString *)profileName block:(NLCocoaBenchBlock)block
 {
-    [self startProfile:profileName];
+    NLCBProfile *profile = [self startProfile:profileName];
     block();
-    [self finishProfile:profileName];
+    [profile stop];
+    return profile;
 }
 
 #endif
-
-
-#pragma mark Private Methods
-
-- (NLCBProfile *)fetchOrCreateStatsForName:(NSString *)profileName
-{
-    NLCBProfile *stats = [profileStats objectForKey:profileName];
-    if (!stats) {
-        stats = [[[NLCBProfile alloc] init] autorelease];
-        [profileStats setObject:stats forKey:profileName];
-    }
-    return stats;
-}
 
 
 @end

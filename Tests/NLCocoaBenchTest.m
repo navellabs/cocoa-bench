@@ -27,7 +27,6 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import "NLCocoaBench.h"
-#import "NLCBProfileStub.h"
 
 
 @interface NLCocoaBenchTest : SenTestCase {
@@ -45,34 +44,14 @@
     bench = [[[NLCocoaBench alloc] init] autorelease];
 }
 
-- (void)testStartingAProfile
+- (void)testRunningAProfile
 {
-    [bench startProfile:@"someLoop"];
-    STAssertEquals((int)[bench.activeProfileNames count], (int)1, nil);
-    STAssertEquals([bench.activeProfileNames objectAtIndex:0], @"someLoop", nil);
-}
+    NLCBProfile *profile = [bench startProfile:@"someLoop"];
+    // Pretend we did something...
+    [profile stop];
 
-- (void)testFinishingAProfileRemovesItFromTheActiveList
-{
-    [bench startProfile:@"someLoop"];
-    [bench finishProfile:@"someLoop"];
-    STAssertEquals((int)[bench.activeProfileNames count], (int)0, nil);
-}
-
-- (void)testStartingAnotherProfileAddsItToTheActiveList
-{
-    [bench startProfile:@"someLoop"];
-    [bench startProfile:@"innerLoop"];
-    STAssertEquals((int)[bench.activeProfileNames count], (int)2, nil);
-    STAssertEqualObjects(bench.activeProfileNames, ([NSArray arrayWithObjects:@"someLoop", @"innerLoop", nil]), nil);
-}
-
-- (void)testGettingAProfilesTime
-{
-    [bench startProfile:@"someLoop"];
-    [bench finishProfile:@"someLoop"];
-    UInt64 time = [bench profileTime:@"someLoop"];
-    STAssertFalse(time == 0, nil);
+    STAssertEqualObjects(profile.name, @"someLoop", nil);
+    STAssertTrue(profile.duration != 0, nil);
 }
 
 - (void)testSharedSingleton
@@ -88,11 +67,10 @@
 {
     __block NSString *mustBeSet = nil;
 
-    [bench profile:@"someLoop" block:^{
+    NLCBProfile *profile = [bench profile:@"someLoop" block:^{
         mustBeSet = @"with this";
     }];
-    NSTimeInterval time = [bench profileTime:@"someLoop"];
-    STAssertFalse(time == 0, nil);
+    STAssertTrue(profile.duration != 0, nil);
     STAssertNotNil(mustBeSet, nil);
 }
 

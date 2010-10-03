@@ -26,31 +26,23 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "NLCBProfile.h"
 
-@interface NLCocoaBench : NSObject {
-    NSMutableArray *activeProfileNames;
-    NSMutableArray *allProfileNames;
-    NSMutableDictionary *profileStats;
-}
+@interface NLCocoaBench : NSObject
 
-+ (void)startProfile:(NSString *)profileName;
-+ (void)finishProfile:(NSString *)profileName;
++ (NLCBProfile *)startProfile:(NSString *)profileName;
 
 + (NLCocoaBench *)sharedBench;
 
-@property (nonatomic, readonly) NSArray *activeProfileNames;
-
-- (void)startProfile:(NSString *)profileName;
-- (void)finishProfile:(NSString *)profileName;
-- (UInt64)profileTime:(NSString *)profileName;
+- (NLCBProfile *)startProfile:(NSString *)profileName;
 
 #ifdef __BLOCKS__
 
 typedef void (^NLCocoaBenchBlock)();
 
-+ (void)profile:(NSString *)profileName block:(NLCocoaBenchBlock)block;
++ (NLCBProfile *)profile:(NSString *)profileName block:(NLCocoaBenchBlock)block;
 
-- (void)profile:(NSString *)profileName block:(NLCocoaBenchBlock)block;
+- (NLCBProfile *)profile:(NSString *)profileName block:(NLCocoaBenchBlock)block;
 
 #endif
 
