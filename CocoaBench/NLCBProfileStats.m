@@ -34,6 +34,7 @@
 
 @synthesize name;
 @synthesize startTime, stopTime;
+@synthesize whenStarted, whenStopped;
 
 static mach_timebase_info_data_t timebase;
 
@@ -41,6 +42,8 @@ static mach_timebase_info_data_t timebase;
 
 - (void)dealloc
 {
+    self.whenStarted = nil;
+    self.whenStopped = nil;
     self.name = nil;
     [super dealloc];
 }
@@ -59,11 +62,13 @@ static inline UInt64 NLCBAbsoluteNanoTime()
 - (void)start
 {
     startTime = NLCBAbsoluteNanoTime();
+    self.whenStarted = [NSDate date];
 }
 
 - (void)stop
 {
     stopTime = NLCBAbsoluteNanoTime();
+    self.whenStopped = [NSDate date];
 }
 
 

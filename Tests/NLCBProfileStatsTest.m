@@ -67,6 +67,20 @@
     STAssertEquals(stats.duration, (UInt64)1, nil);
 }
 
+- (void)testWhenStartedPropertySetWhenStarted
+{
+    STAssertNil(stats.whenStarted, nil);
+    [stats start];
+    STAssertNotNil(stats.whenStarted, nil);
+}
+
+- (void)testWhenStoppedPropertySetWhenStopped
+{
+    STAssertNil(stats.whenStopped, nil);
+    [stats stop];
+    STAssertNotNil(stats.whenStopped, nil);
+}
+
 - (void)testTiming
 {
     [stats start];
