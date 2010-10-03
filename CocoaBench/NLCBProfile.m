@@ -25,12 +25,12 @@
  http://github.com/navellabs/cocoa-bench
  */
 
-#import "NLCBProfileStats.h"
+#import "NLCBProfile.h"
 #include <mach/mach.h>
 #include <mach/mach_time.h>
 #include <unistd.h>
 
-@implementation NLCBProfileStats
+@implementation NLCBProfile
 
 @synthesize name;
 @synthesize startTime, stopTime;

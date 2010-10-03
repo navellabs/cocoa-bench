@@ -25,9 +25,9 @@
  http://github.com/navellabs/cocoa-bench
  */
 
-#import "NLCBProfileStats.h"
+#import "NLCBProfile.h"
 
-@interface NLCBProfileStatsStub : NLCBProfileStats {
+@interface NLCBProfileStatsStub : NLCBProfile {
     UInt64 duration;
 }
 

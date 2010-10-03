@@ -26,12 +26,12 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "NLCBProfileStats.h"
+#import "NLCBProfile.h"
 
 @interface NLCBProfileStatsFormatter : NSObject {
     NSNumberFormatter *numberFormatter;
 }
 
-- (NSString *)stringFromStats:(NLCBProfileStats *)stats;
+- (NSString *)stringFromStats:(NLCBProfile *)stats;
 
 @end

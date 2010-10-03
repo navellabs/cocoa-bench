@@ -26,11 +26,11 @@
  */
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "NLCBProfileStats.h"
+#import "NLCBProfile.h"
 
 
 @interface NLCBProfileStatsTest : SenTestCase {
-    NLCBProfileStats *stats;
+    NLCBProfile *stats;
 }
 
 @end
@@ -39,7 +39,7 @@
 
 - (void)setUp
 {
-    stats = [[[NLCBProfileStats alloc] init] autorelease];
+    stats = [[[NLCBProfile alloc] init] autorelease];
 }
 
 - (void)testProfileNameProperty

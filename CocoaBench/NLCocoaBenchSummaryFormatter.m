@@ -38,7 +38,7 @@
     [lines addObject:@"Cocoa Bench Summary:"];
     
     for (NSString *name in names) {
-        NLCBProfileStats *stats = [statsDict objectForKey:name];
+        NLCBProfile *stats = [statsDict objectForKey:name];
         NSString *duration = [formatter stringFromStats:stats];
         NSString *line = [NSString stringWithFormat:@"%@ - %@", name, duration];
         [lines addObject:line];

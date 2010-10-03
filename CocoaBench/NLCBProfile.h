@@ -25,7 +25,7 @@
  http://github.com/navellabs/cocoa-bench
  */
 
-@interface NLCBProfileStats : NSObject {
+@interface NLCBProfile : NSObject {
     NSString *name;
     UInt64 startTime, stopTime;
     NSDate *whenStarted, *whenStopped;

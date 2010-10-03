@@ -27,10 +27,10 @@
 
 #import "NLCocoaBench.h"
 #import "NLCocoaBenchSummaryFormatter.h"
-#import "NLCBProfileStats.h"
+#import "NLCBProfile.h"
 
 @interface NLCocoaBench ()
-- (NLCBProfileStats *)fetchOrCreateStatsForName:(NSString *)profileName;
+- (NLCBProfile *)fetchOrCreateStatsForName:(NSString *)profileName;
 @end
 
 static NLCocoaBench *sharedNLCocoaBench = nil;
@@ -93,7 +93,7 @@ static NLCocoaBench *sharedNLCocoaBench = nil;
 
 - (void)startProfile:(NSString *)profileName
 {
-    NLCBProfileStats *stats = [self fetchOrCreateStatsForName:profileName];
+    NLCBProfile *stats = [self fetchOrCreateStatsForName:profileName];
     [stats start];
     [activeProfileNames addObject:profileName];
     [allProfileNames addObject:profileName];
@@ -101,14 +101,14 @@ static NLCocoaBench *sharedNLCocoaBench = nil;
 
 - (void)finishProfile:(NSString *)profileName
 {
-    NLCBProfileStats *stats = [self fetchOrCreateStatsForName:profileName];
+    NLCBProfile *stats = [self fetchOrCreateStatsForName:profileName];
     [stats stop];
     [activeProfileNames removeObject:profileName];
 }
 
 - (UInt64)profileTime:(NSString *)profileName
 {
-    NLCBProfileStats *stats = [self fetchOrCreateStatsForName:profileName];
+    NLCBProfile *stats = [self fetchOrCreateStatsForName:profileName];
     return stats.duration;
 }
 
@@ -140,11 +140,11 @@ static NLCocoaBench *sharedNLCocoaBench = nil;
 
 #pragma mark Private Methods
 
-- (NLCBProfileStats *)fetchOrCreateStatsForName:(NSString *)profileName
+- (NLCBProfile *)fetchOrCreateStatsForName:(NSString *)profileName
 {
-    NLCBProfileStats *stats = [profileStats objectForKey:profileName];
+    NLCBProfile *stats = [profileStats objectForKey:profileName];
     if (!stats) {
-        stats = [[[NLCBProfileStats alloc] init] autorelease];
+        stats = [[[NLCBProfile alloc] init] autorelease];
         [profileStats setObject:stats forKey:profileName];
     }
     return stats;
