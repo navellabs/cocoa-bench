@@ -27,11 +27,11 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import "NLCBProfileStatsFormatter.h"
-#import "NLCBProfileStatsStub.h"
+#import "NLCBProfileStub.h"
 
 @interface NLCBProfileStatsFormatterTest : SenTestCase {
     NLCBProfileStatsFormatter *formatter;
-    NLCBProfileStatsStub *stats;
+    NLCBProfileStub *profile;
 }
 
 @end
@@ -41,28 +41,28 @@
 
 - (void)setUp
 {
-    stats = [NLCBProfileStatsStub stub];
+    profile = [NLCBProfileStub stub];
     formatter = [[[NLCBProfileStatsFormatter alloc] init] autorelease];
 }
 
 - (void)testFormattingLessThan1Second
 {
-    [stats setDuration:10];
-    NSString *stringTime = [formatter stringFromProfile:stats];
+    [profile setDuration:10];
+    NSString *stringTime = [formatter stringFromProfile:profile];
     STAssertEqualObjects(stringTime, @"10 ns", nil);
 }
 
 - (void)testFormattingGreaterThan1Millisecond
 {
-    [stats setDuration:1540000];
-    NSString *stringTime = [formatter stringFromProfile:stats];
+    [profile setDuration:1540000];
+    NSString *stringTime = [formatter stringFromProfile:profile];
     STAssertEqualObjects(stringTime, @"1.54 ms", nil);    
 }
 
 - (void)testFormattingGreaterThan1Second
 {
-    [stats setDuration:1542000000];
-    NSString *stringTime = [formatter stringFromProfile:stats];
+    [profile setDuration:1542000000];
+    NSString *stringTime = [formatter stringFromProfile:profile];
     STAssertEqualObjects(stringTime, @"1.542 s", nil);    
 }
 

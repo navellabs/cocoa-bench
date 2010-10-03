@@ -30,7 +30,7 @@
 
 
 @interface NLCBProfileTest : SenTestCase {
-    NLCBProfile *stats;
+    NLCBProfile *profile;
 }
 
 @end
@@ -39,62 +39,62 @@
 
 - (void)setUp
 {
-    stats = [[[NLCBProfile alloc] init] autorelease];
+    profile = [[[NLCBProfile alloc] init] autorelease];
 }
 
 - (void)testProfileNameProperty
 {
-    stats.name = @"someName";
-    STAssertEqualObjects(stats.name, @"someName", nil);
+    profile.name = @"someName";
+    STAssertEqualObjects(profile.name, @"someName", nil);
 }
 
 - (void)testProfileStartTimeProperty
 {
-    stats.startTime = 1;
-    STAssertEquals(stats.startTime, (UInt64)1, nil);
+    profile.startTime = 1;
+    STAssertEquals(profile.startTime, (UInt64)1, nil);
 }
 
 - (void)testProfileEndTimeProperty
 {
-    stats.stopTime = 1;
-    STAssertEquals(stats.stopTime, (UInt64)1, nil);
+    profile.stopTime = 1;
+    STAssertEquals(profile.stopTime, (UInt64)1, nil);
 }
 
 - (void)testProfileDurationProperty
 {
-    stats.startTime = 1;
-    stats.stopTime = 2;
-    STAssertEquals(stats.duration, (UInt64)1, nil);
+    profile.startTime = 1;
+    profile.stopTime = 2;
+    STAssertEquals(profile.duration, (UInt64)1, nil);
 }
 
 - (void)testWhenStartedPropertySetWhenStarted
 {
-    STAssertNil(stats.whenStarted, nil);
-    [stats start];
-    STAssertNotNil(stats.whenStarted, nil);
+    STAssertNil(profile.whenStarted, nil);
+    [profile start];
+    STAssertNotNil(profile.whenStarted, nil);
 }
 
 - (void)testWhenStoppedPropertySetWhenStopped
 {
-    STAssertNil(stats.whenStopped, nil);
-    [stats stop];
-    STAssertNotNil(stats.whenStopped, nil);
+    STAssertNil(profile.whenStopped, nil);
+    [profile stop];
+    STAssertNotNil(profile.whenStopped, nil);
 }
 
 - (void)testTiming
 {
-    [stats start];
-    [stats stop];
-    STAssertFalse(stats.duration == 0, nil);
+    [profile start];
+    [profile stop];
+    STAssertFalse(profile.duration == 0, nil);
 }
 
 - (void)testDescription
 {
-    stats.name = @"some profile";
-    stats.whenStopped = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
-    stats.startTime = 0;
-    stats.stopTime = 1;
-    STAssertEqualObjects([stats description], @"2000-12-31 19:00:00 -0500: some profile - 1 ns", nil);
+    profile.name = @"some profile";
+    profile.whenStopped = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
+    profile.startTime = 0;
+    profile.stopTime = 1;
+    STAssertEqualObjects([profile description], @"2000-12-31 19:00:00 -0500: some profile - 1 ns", nil);
 }
 
 @end

@@ -27,7 +27,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import "NLCocoaBenchSummaryFormatter.h"
-#import "NLCBProfileStatsStub.h"
+#import "NLCBProfileStub.h"
 
 
 @interface NLCocoaBenchSummaryFormatterTest : SenTestCase {
@@ -46,7 +46,7 @@
 
 - (void)testIteratesOverAllProfileNamesAndFormatsOutput
 {
-    NLCBProfileStatsStub *stub1 = [NLCBProfileStatsStub stub], *stub2 = [NLCBProfileStatsStub stub];
+    NLCBProfileStub *stub1 = [NLCBProfileStub stub], *stub2 = [NLCBProfileStub stub];
     [stub1 setDuration:1];
     [stub2 setDuration:2];
     NSArray *names = [NSArray arrayWithObjects:@"loop one", @"loop again", nil];

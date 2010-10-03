@@ -25,14 +25,13 @@
  http://github.com/navellabs/cocoa-bench
  */
 
-#import "NLCBProfile.h"
+#import "NLCBProfileStub.h"
 
-@interface NLCBProfileStatsStub : NLCBProfile {
-    UInt64 duration;
-}
+@implementation NLCBProfileStub
 
-+ (NLCBProfileStatsStub *)stub;
++ (NLCBProfileStub *)stub { return [[[NLCBProfileStub alloc] init]autorelease]; }
 
-- (void)setDuration:(UInt64)newDuration;
+- (void)setDuration:(UInt64)newDuration { duration = newDuration; }
+- (UInt64)duration                      { return duration; }
 
 @end
