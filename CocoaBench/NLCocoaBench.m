@@ -24,7 +24,8 @@
  */
 
 #import "NLCocoaBench.h"
-#import "NLCBProfileStatsFormatter.h"
+#import "NLCocoaBenchSummaryFormatter.h"
+
 
 @interface NLCocoaBench ()
 
@@ -114,31 +115,5 @@
     return stats;
 }
 
-
-@end
-
-
-#pragma mark -
-#pragma mark NLCocoaBenchSummaryFormattter
-
-
-@implementation NLCocoaBenchSummaryFormatter
-
-- (NSString *)summarizeProfileNames:(NSArray *)names forStats:(NSDictionary *)statsDict
-{
-    NLCBProfileStatsFormatter *formatter = [[[NLCBProfileStatsFormatter alloc] init] autorelease];
-    NSMutableArray *lines = [NSMutableArray arrayWithCapacity:20];
-
-    [lines addObject:@"Cocoa Bench Summary:"];
-
-    for (NSString *name in names) {
-        NLCBProfileStats *stats = [statsDict objectForKey:name];
-        NSString *duration = [formatter stringFromStats:stats];
-        NSString *line = [NSString stringWithFormat:@"%@ - %@", name, duration];
-        [lines addObject:line];
-    }
-
-    return [lines componentsJoinedByString:@"\n"];
-}
 
 @end

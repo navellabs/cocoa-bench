@@ -1,6 +1,6 @@
 /*
  Copyright (c) 2010 Navel Labs, Ltd.
-
+ 
  Permission is hereby granted, free of charge, to any person
  obtaining a copy of this software and associated documentation
  files (the "Software"), to deal in the Software without
@@ -9,10 +9,10 @@
  copies of the Software, and to permit persons to whom the
  Software is furnished to do so, subject to the following
  conditions:
-
+ 
  The above copyright notice and this permission notice shall be
  included in all copies or substantial portions of the Software.
-
+ 
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -23,31 +23,38 @@
  OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#import <Foundation/Foundation.h>
-#include <mach/clock.h>
+#import <SenTestingKit/SenTestingKit.h>
+#import "NLCocoaBenchSummaryFormatter.h"
+#import "NLCBProfileStatsStub.h"
 
-#include "NLCBProfileStats.h"
 
-
-@interface NLCocoaBench : NSObject {
-    NSMutableArray *activeProfileNames;
-    NSMutableArray *allProfileNames;
-    NSMutableDictionary *profileStats;
+@interface NLCocoaBenchSummaryFormatterTest : SenTestCase {
+    NLCocoaBenchSummaryFormatter *formatter;
 }
 
-@property (nonatomic, readonly) NSArray *activeProfileNames;
-@property (nonatomic, readonly) NSString *summary;
+@end
 
-- (void)startProfile:(NSString *)profileName;
-- (void)finishProfile:(NSString *)profileName;
-- (UInt64)profileTime:(NSString *)profileName;
 
-#ifdef __BLOCKS__
+@implementation NLCocoaBenchSummaryFormatterTest
 
-typedef void (^NLCocoaBenchBlock)();
+- (void)setUp
+{
+    formatter = [[[NLCocoaBenchSummaryFormatter alloc] init] autorelease];
+}
 
-- (void)profile:(NSString *)profileName block:(NLCocoaBenchBlock)block;
-
-#endif
+- (void)testIteratesOverAllProfileNamesAndFormatsOutput
+{
+    NLCBProfileStatsStub *stub1 = [NLCBProfileStatsStub stub], *stub2 = [NLCBProfileStatsStub stub];
+    [stub1 setDuration:1];
+    [stub2 setDuration:2];
+    NSArray *names = [NSArray arrayWithObjects:@"loop one", @"loop again", nil];
+    NSDictionary *stats = [NSDictionary dictionaryWithObjectsAndKeys:
+                           stub1, @"loop one",
+                           stub2, @"loop again",
+                           nil];
+    NSString *summary = [formatter summarizeProfileNames:names forStats:stats];
+    NSString *expected = @"Cocoa Bench Summary:\nloop one - 1 ns\nloop again - 2 ns";
+    STAssertEqualObjects(summary, expected, nil);
+}
 
 @end
