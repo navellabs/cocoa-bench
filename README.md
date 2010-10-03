@@ -9,75 +9,51 @@ time and `NSLog()` the summary when you're ready to go!
 Usage
 -----
 
-### Example 1 - Wrapping around code ###
+### Example 1 - Block syntax! ###
 
-    // Tell the global cocoa bench object to start profiling
-    // with a given name
-    [NLCocoaBench startProfile:@"longRunningOperation"];
+If you're able to use the new Objective C block syntax, then just wrap
+the code you want to profile in a block:
 
-    for (NSString *values in strings) {
-        // Do some expensive operation over and over...
-    }
-
-    // Tell cocoa bench that you're done with this profile.
-    [NLCocoaBench finishProfile:@"longRunningOperation"];
-
-    // Dump the summary of the benchmark to the console
-    NSLog(@"%@", [NLCocoaBench summary]);
-
-    /*
-      Outputs something like:
-
-      Cocoa Bench Summary:
-      longRunningOperation - 30 ns
-    */
-
-
-### Example 2 - More than one profile ###
-
-    // Tell the global cocoa bench object to start profiling
-    [NLCocoaBench startProfile:@"wholeOperation"];
-
-    // Do some first part of a long operation
-
-    // Nest this inner profile benchmark
-    [NLCocoabench startProfile:@"innerOperation"];
-    // Do a smaller part of the larger operation...
-    [NLCocoaBench finishProfile:@"innerOperation"];
-
-    // Stop this first profile
-    [NLCocoaBench finishProfile:@"wholeOperation"];
-
-    // Dump the summary of the benchmark to the console
-    NSLog(@"%@", [NLCocoaBench summary]);
-
-    /*
-      Outputs something like:
-
-      Cocoa Bench Summary:
-      wholeOperation - 90 ms
-      innerOperation - 30 ns
-    */
-
-
-### Example 3 - Block syntax! ###
-
-    // You can even use the new block syntax!
-
-    [NLCocoaBench profile:@"someOperation" block:^{
+    NLCBProfile *profile = [NLCocoaBench profile:@"someOperation" block:^{
       for (NSString *values in strings) {
           // Do some expensive operation over and over...
       }
     }];
 
     // Dump the summary of the benchmark to the console
-    NSLog(@"%@", [NLCocoaBench summary]);
+    NSLog(@"%@", profile);
 
     /*
       Outputs something like:
 
-      Cocoa Bench Summary:
       someOperation - 25.2 ms
+    */
+
+
+### Example 2 - Manually wrapping around code ###
+
+You can use the convenient class methods to generate and start a profile
+running. Stop it when you're done and then query it for whatever you
+need!
+
+    // Tell the global cocoa bench object to start profiling
+    // with a given name
+    NLCBProfile *profile = [NLCocoaBench startProfile:@"longRunningOperation"];
+
+    for (NSString *values in strings) {
+        // Do some expensive operation over and over...
+    }
+
+    // Tell cocoa bench that you're done with this profile.
+    [profile stop];
+
+    // Dump the summary of the benchmark to the console
+    NSLog(@"%@", profile);
+
+    /*
+      Outputs something like:
+
+      longRunningOperation - 30 ns
     */
 
 
