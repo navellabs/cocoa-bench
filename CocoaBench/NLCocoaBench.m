@@ -121,6 +121,11 @@ static NLCocoaBench *sharedNLCocoaBench = nil;
 
 #ifdef __BLOCKS__
 
++ (void)profile:(NSString *)profileName block:(NLCocoaBenchBlock)block
+{
+    [[self sharedBench] profile:profileName block:block];
+}
+
 - (void)profile:(NSString *)profileName block:(NLCocoaBenchBlock)block
 {
     [self startProfile:profileName];
