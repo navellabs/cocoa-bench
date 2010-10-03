@@ -26,7 +26,12 @@
  */
 
 #import "NLCBProfileStatsFormatter.h"
-#import <IOKit/IOTypes.h>
+
+enum { 
+    kNLNanosecondScale = 1, 
+    kNLMillisecondScale = 1000 * 1000, 
+    kNLSecondScale = 1000 * 1000 * 1000
+};
 
 @implementation NLCBProfileStatsFormatter
 
@@ -60,14 +65,14 @@
     NSDecimalNumber *nsDuraction = [[NSDecimalNumber alloc] initWithUnsignedLongLong:stats.duration];
     NSString *units = nil;
     
-    if (stats.duration > kSecondScale) {
-        scale = [[NSDecimalNumber alloc] initWithUnsignedLong:kSecondScale];
+    if (stats.duration > kNLSecondScale) {
+        scale = [[NSDecimalNumber alloc] initWithUnsignedLong:kNLSecondScale];
         adjustedDuration = [nsDuraction decimalNumberByDividingBy:scale];
         units = @"s";
         [scale release];
         [nsDuraction release];
-    } else if (stats.duration > kMillisecondScale) {
-        scale = [[NSDecimalNumber alloc] initWithUnsignedLongLong:kMillisecondScale];
+    } else if (stats.duration > kNLMillisecondScale) {
+        scale = [[NSDecimalNumber alloc] initWithUnsignedLongLong:kNLMillisecondScale];
         adjustedDuration = [nsDuraction decimalNumberByDividingBy:scale];
         units = @"ms";
         [scale release];
