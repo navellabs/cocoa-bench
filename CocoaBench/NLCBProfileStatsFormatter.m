@@ -53,31 +53,28 @@
 
 - (NSString *)stringFromStats:(NLCBProfileStats *)stats
 {
-    NSDecimalNumber *scale = nil,
-    *newDuration = nil,
-    *duration = [[NSDecimalNumber alloc]initWithUnsignedLongLong:stats.duration];
+    NSDecimalNumber *scale = nil, *adjustedDuration = nil;
+    NSDecimalNumber *nsDuraction = [[NSDecimalNumber alloc] initWithUnsignedLongLong:stats.duration];
     NSString *units = nil;
     
     if (stats.duration > kSecondScale) {
         scale = [[NSDecimalNumber alloc] initWithUnsignedLong:kSecondScale];
-        newDuration = [duration decimalNumberByDividingBy:scale];
-        [scale release];
-        [duration release];
-        duration = [newDuration retain];
+        adjustedDuration = [nsDuraction decimalNumberByDividingBy:scale];
         units = @"s";
-    } else if (stats.duration > kMillisecondScale) {
-        scale = [[NSDecimalNumber alloc] initWithUnsignedLong:kMillisecondScale];
-        newDuration = [duration decimalNumberByDividingBy:scale];
         [scale release];
-        [duration release];
-        duration = [newDuration retain];
+        [nsDuraction release];
+    } else if (stats.duration > kMillisecondScale) {
+        scale = [[NSDecimalNumber alloc] initWithUnsignedLongLong:kMillisecondScale];
+        adjustedDuration = [nsDuraction decimalNumberByDividingBy:scale];
         units = @"ms";
+        [scale release];
+        [nsDuraction release];
     } else {
         units = @"ns";
+        adjustedDuration = [nsDuraction autorelease];
     }
     
-    NSString *numberString = [numberFormatter stringFromNumber:duration];
-    [duration release];
+    NSString *numberString = [numberFormatter stringFromNumber:adjustedDuration];
     return [NSString stringWithFormat:@"%@ %@", numberString, units];
 }
 
