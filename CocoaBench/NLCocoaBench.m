@@ -31,10 +31,39 @@
 - (NLCBProfileStats *)fetchOrCreateStatsForName:(NSString *)profileName;
 @end
 
+static NLCocoaBench *sharedNLCocoaBench = nil;
 
 @implementation NLCocoaBench
 
 @synthesize activeProfileNames;
+
+
+#pragma mark Recommended Class Methods
+
++ (void)startProfile:(NSString *)profileName
+{
+    [[self sharedBench] startProfile:profileName];
+}
+
++ (void)finishProfile:(NSString *)profileName
+{
+    [[self sharedBench] finishProfile:profileName];
+}
+
++ (NSString *)summary
+{
+    return [self sharedBench].summary;
+}
+
++ (NLCocoaBench *)sharedBench
+{
+    @synchronized(self) {
+        if (!sharedNLCocoaBench) {
+            sharedNLCocoaBench = [[self allocWithZone:NULL] init];
+        }
+    }
+    return sharedNLCocoaBench;
+}
 
 
 #pragma mark Memory Management

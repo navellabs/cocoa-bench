@@ -83,6 +83,13 @@
     STAssertNotNil(summary, nil);
 }
 
+- (void)testSharedSingleton
+{
+    NLCocoaBench *bench1 = [NLCocoaBench sharedBench];
+    NLCocoaBench *bench2 = [NLCocoaBench sharedBench];
+    STAssertEquals(bench1, bench2, nil);
+}
+
 #ifdef __BLOCKS__
 
 - (void)testBenchmarkingWithABlock

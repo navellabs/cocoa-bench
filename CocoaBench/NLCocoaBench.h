@@ -31,6 +31,12 @@
     NSMutableDictionary *profileStats;
 }
 
++ (void)startProfile:(NSString *)profileName;
++ (void)finishProfile:(NSString *)profileName;
++ (NSString *)summary;
+
++ (NLCocoaBench *)sharedBench;
+
 @property (nonatomic, readonly) NSArray *activeProfileNames;
 @property (nonatomic, readonly) NSString *summary;
 
