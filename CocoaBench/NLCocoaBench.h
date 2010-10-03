@@ -47,3 +47,11 @@ typedef void (^NLCocoaBenchBlock)();
 #endif
 
 @end
+
+
+#define NLCocoaBenchStartLocalProfile(nl_profName) \
+    NLCBProfile *nl_local_profile = [NLCocoaBench startProfile:(nl_profName)];
+
+#define NLCocoaBenchFinishLocalProfile \
+    [nl_local_profile stop]; \
+    NSLog(@"%@", nl_local_profile);
