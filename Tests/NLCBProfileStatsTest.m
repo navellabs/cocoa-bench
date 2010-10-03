@@ -29,13 +29,13 @@
 #import "NLCBProfile.h"
 
 
-@interface NLCBProfileStatsTest : SenTestCase {
+@interface NLCBProfileTest : SenTestCase {
     NLCBProfile *stats;
 }
 
 @end
 
-@implementation NLCBProfileStatsTest
+@implementation NLCBProfileTest
 
 - (void)setUp
 {
