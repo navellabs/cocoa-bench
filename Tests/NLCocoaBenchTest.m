@@ -71,7 +71,7 @@
 {
     [bench startProfile:@"someLoop"];
     [bench finishProfile:@"someLoop"];
-    NSTimeInterval time = [bench profileTime:@"someLoop"];
+    UInt64 time = [bench profileTime:@"someLoop"];
     STAssertFalse(time == 0, nil);
 }
 
