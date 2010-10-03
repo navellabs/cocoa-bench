@@ -48,21 +48,21 @@
 - (void)testFormattingLessThan1Second
 {
     [stats setDuration:10];
-    NSString *stringTime = [formatter stringFromStats:stats];
+    NSString *stringTime = [formatter stringFromProfile:stats];
     STAssertEqualObjects(stringTime, @"10 ns", nil);
 }
 
 - (void)testFormattingGreaterThan1Millisecond
 {
     [stats setDuration:1540000];
-    NSString *stringTime = [formatter stringFromStats:stats];
+    NSString *stringTime = [formatter stringFromProfile:stats];
     STAssertEqualObjects(stringTime, @"1.54 ms", nil);    
 }
 
 - (void)testFormattingGreaterThan1Second
 {
     [stats setDuration:1542000000];
-    NSString *stringTime = [formatter stringFromStats:stats];
+    NSString *stringTime = [formatter stringFromProfile:stats];
     STAssertEqualObjects(stringTime, @"1.542 s", nil);    
 }
 

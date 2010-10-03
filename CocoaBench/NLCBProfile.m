@@ -75,7 +75,7 @@ static inline UInt64 NLCBAbsoluteNanoTime()
 - (NSString *)description
 {
     NLCBProfileStatsFormatter *formatter = [[NLCBProfileStatsFormatter alloc] init];
-    NSString *result = [NSString stringWithFormat:@"%@: %@ - %@", self.whenStopped, self.name, [formatter stringFromStats:self]];
+    NSString *result = [NSString stringWithFormat:@"%@: %@ - %@", self.whenStopped, self.name, [formatter stringFromProfile:self]];
     [formatter release];
     return result;
 }

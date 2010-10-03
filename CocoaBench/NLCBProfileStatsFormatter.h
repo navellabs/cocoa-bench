@@ -32,6 +32,6 @@
     NSNumberFormatter *numberFormatter;
 }
 
-- (NSString *)stringFromStats:(NLCBProfile *)stats;
+- (NSString *)stringFromProfile:(NLCBProfile *)stats;
 
 @end

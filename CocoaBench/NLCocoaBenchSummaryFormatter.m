@@ -39,7 +39,7 @@
     
     for (NSString *name in names) {
         NLCBProfile *stats = [statsDict objectForKey:name];
-        NSString *duration = [formatter stringFromStats:stats];
+        NSString *duration = [formatter stringFromProfile:stats];
         NSString *line = [NSString stringWithFormat:@"%@ - %@", name, duration];
         [lines addObject:line];
     }

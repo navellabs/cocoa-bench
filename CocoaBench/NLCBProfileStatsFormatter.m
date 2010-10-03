@@ -54,7 +54,7 @@
 
 #pragma mark Public Methods
 
-- (NSString *)stringFromStats:(NLCBProfile *)stats
+- (NSString *)stringFromProfile:(NLCBProfile *)stats
 {
     NSDecimalNumber *scale = nil, *adjustedDuration = nil;
     NSDecimalNumber *nsDuraction = [[NSDecimalNumber alloc] initWithUnsignedLongLong:stats.duration];
