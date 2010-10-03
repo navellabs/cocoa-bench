@@ -26,6 +26,7 @@
  */
 
 #import "NLCBProfileStatsFormatter.h"
+#import <IOKit/IOTypes.h>
 
 @implementation NLCBProfileStatsFormatter
 
