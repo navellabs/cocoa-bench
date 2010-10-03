@@ -26,7 +26,6 @@
 #import "NLCocoaBenchSummaryFormatter.h"
 #import "NLCBProfileStatsFormatter.h"
 
-
 @implementation NLCocoaBenchSummaryFormatter
 
 - (NSString *)summarizeProfileNames:(NSArray *)names forStats:(NSDictionary *)statsDict

@@ -25,12 +25,10 @@
 
 #import "NLCocoaBench.h"
 #import "NLCocoaBenchSummaryFormatter.h"
-
+#import "NLCBProfileStats.h"
 
 @interface NLCocoaBench ()
-
 - (NLCBProfileStats *)fetchOrCreateStatsForName:(NSString *)profileName;
-
 @end
 
 
@@ -90,6 +88,7 @@
     [formatter release];
     return result;
 }
+
 
 #ifdef __BLOCKS__
 

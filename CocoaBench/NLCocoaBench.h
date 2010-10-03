@@ -24,10 +24,6 @@
  */
 
 #import <Foundation/Foundation.h>
-#include <mach/clock.h>
-
-#include "NLCBProfileStats.h"
-
 
 @interface NLCocoaBench : NSObject {
     NSMutableArray *activeProfileNames;

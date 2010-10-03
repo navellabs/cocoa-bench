@@ -25,9 +25,7 @@
 
 #import <Foundation/Foundation.h>
 
-
-@interface NLCocoaBenchSummaryFormatter : NSObject {
-}
+@interface NLCocoaBenchSummaryFormatter : NSObject
 
 - (NSString *)summarizeProfileNames:(NSArray *)names forStats:(NSDictionary *)stats;
 
