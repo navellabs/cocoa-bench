@@ -27,7 +27,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import "NLCocoaBench.h"
-#import "NLCBProfileStatsStub.h"
+#import "NLCBProfileStub.h"
 
 
 @interface NLCocoaBenchTest : SenTestCase {
@@ -73,16 +73,6 @@
     [bench finishProfile:@"someLoop"];
     UInt64 time = [bench profileTime:@"someLoop"];
     STAssertFalse(time == 0, nil);
-}
-
-- (void)testGettingAProfileSummary
-{
-    [bench startProfile:@"someLoop"];
-    [bench finishProfile:@"someLoop"];
-    [bench startProfile:@"otherLoop"];
-    [bench finishProfile:@"otherLoop"];
-    NSString *summary = [bench summary];
-    STAssertNotNil(summary, nil);
 }
 
 - (void)testSharedSingleton

@@ -26,7 +26,6 @@
  */
 
 #import "NLCocoaBench.h"
-#import "NLCocoaBenchSummaryFormatter.h"
 #import "NLCBProfile.h"
 
 @interface NLCocoaBench ()
@@ -50,11 +49,6 @@ static NLCocoaBench *sharedNLCocoaBench = nil;
 + (void)finishProfile:(NSString *)profileName
 {
     [[self sharedBench] finishProfile:profileName];
-}
-
-+ (NSString *)summary
-{
-    return [self sharedBench].summary;
 }
 
 + (NLCocoaBench *)sharedBench
@@ -110,14 +104,6 @@ static NLCocoaBench *sharedNLCocoaBench = nil;
 {
     NLCBProfile *stats = [self fetchOrCreateStatsForName:profileName];
     return stats.duration;
-}
-
-- (NSString *)summary
-{
-    NLCocoaBenchSummaryFormatter *formatter = [[NLCocoaBenchSummaryFormatter alloc] init];
-    NSString *result = [formatter summarizeProfileNames:allProfileNames forStats:profileStats];
-    [formatter release];
-    return result;
 }
 
 

@@ -14,8 +14,6 @@
 		AB445ABC1257DFFB00ECF199 /* NLCBProfileStub.m in Sources */ = {isa = PBXBuildFile; fileRef = AB445ABB1257DFFB00ECF199 /* NLCBProfileStub.m */; };
 		AB445ACD1257E07500ECF199 /* NLCBProfileStatsFormatterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AB445ACC1257E07500ECF199 /* NLCBProfileStatsFormatterTest.m */; };
 		AB445AD41257E0C400ECF199 /* NLCBProfileStatsFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = AB445AD31257E0C400ECF199 /* NLCBProfileStatsFormatter.m */; };
-		AB445AF3125848F400ECF199 /* NLCocoaBenchSummaryFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = AB445AF2125848F400ECF199 /* NLCocoaBenchSummaryFormatter.m */; };
-		AB445AF91258493C00ECF199 /* NLCocoaBenchSummaryFormatterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AB445AF81258493C00ECF199 /* NLCocoaBenchSummaryFormatterTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,9 +30,6 @@
 		AB445ACC1257E07500ECF199 /* NLCBProfileStatsFormatterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCBProfileStatsFormatterTest.m; sourceTree = "<group>"; };
 		AB445AD21257E0C400ECF199 /* NLCBProfileStatsFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLCBProfileStatsFormatter.h; sourceTree = "<group>"; };
 		AB445AD31257E0C400ECF199 /* NLCBProfileStatsFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCBProfileStatsFormatter.m; sourceTree = "<group>"; };
-		AB445AF1125848F400ECF199 /* NLCocoaBenchSummaryFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLCocoaBenchSummaryFormatter.h; sourceTree = "<group>"; };
-		AB445AF2125848F400ECF199 /* NLCocoaBenchSummaryFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCocoaBenchSummaryFormatter.m; sourceTree = "<group>"; };
-		AB445AF81258493C00ECF199 /* NLCocoaBenchSummaryFormatterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCocoaBenchSummaryFormatterTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +69,6 @@
 				AB445ABA1257DFFB00ECF199 /* NLCBProfileStub.h */,
 				AB445ABB1257DFFB00ECF199 /* NLCBProfileStub.m */,
 				AB445ACC1257E07500ECF199 /* NLCBProfileStatsFormatterTest.m */,
-				AB445AF81258493C00ECF199 /* NLCocoaBenchSummaryFormatterTest.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -84,8 +78,6 @@
 			children = (
 				AB445A971257DF1B00ECF199 /* NLCocoaBench.h */,
 				AB445A981257DF1B00ECF199 /* NLCocoaBench.m */,
-				AB445AF1125848F400ECF199 /* NLCocoaBenchSummaryFormatter.h */,
-				AB445AF2125848F400ECF199 /* NLCocoaBenchSummaryFormatter.m */,
 				AB445AA41257DF4000ECF199 /* NLCBProfile.h */,
 				AB445AA51257DF4000ECF199 /* NLCBProfile.m */,
 				AB445AD21257E0C400ECF199 /* NLCBProfileStatsFormatter.h */,
@@ -178,8 +170,6 @@
 				AB445ABC1257DFFB00ECF199 /* NLCBProfileStub.m in Sources */,
 				AB445ACD1257E07500ECF199 /* NLCBProfileStatsFormatterTest.m in Sources */,
 				AB445AD41257E0C400ECF199 /* NLCBProfileStatsFormatter.m in Sources */,
-				AB445AF3125848F400ECF199 /* NLCocoaBenchSummaryFormatter.m in Sources */,
-				AB445AF91258493C00ECF199 /* NLCocoaBenchSummaryFormatterTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
