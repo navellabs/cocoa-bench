@@ -14,7 +14,7 @@ Usage
 If you're able to use the new Objective C block syntax, then just wrap
 the code you want to profile in a block:
 
-    NLCBProfile *profile = [NLCocoaBench profile:@"someOperation" block:^{
+    NLCBProfile *profile = [NLCocoaBench profile:@"Some Operation" block:^{
       for (NSString *values in strings) {
           // Do some expensive operation over and over...
       }
@@ -23,11 +23,9 @@ the code you want to profile in a block:
     // Dump the summary of the benchmark to the console
     NSLog(@"%@", profile);
 
-    /*
-      Outputs something like:
+Outputs something like:
 
-      someOperation - 25.2 ms
-    */
+    Some Operation - 25.2 ms
 
 
 ### Example 2 - Manually wrapping around code ###
@@ -38,7 +36,7 @@ need!
 
     // Tell the global cocoa bench object to start profiling
     // with a given name
-    NLCBProfile *profile = [NLCocoaBench startProfile:@"longRunningOperation"];
+    NLCBProfile *profile = [NLCocoaBench startProfile:@"Long Running Operation"];
 
     for (NSString *values in strings) {
         // Do some expensive operation over and over...
@@ -50,11 +48,9 @@ need!
     // Dump the summary of the benchmark to the console
     NSLog(@"%@", profile);
 
-    /*
-      Outputs something like:
+Outputs something like:
 
-      longRunningOperation - 30 ns
-    */
+    Long Running Operation - 30 ns
 
 
 Installation
