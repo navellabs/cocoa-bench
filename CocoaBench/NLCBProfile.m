@@ -26,6 +26,7 @@
  */
 
 #import "NLCBProfile.h"
+#import "NLCBProfileStatsFormatter.h"
 #include <mach/mach.h>
 #include <mach/mach_time.h>
 #include <unistd.h>
@@ -69,6 +70,14 @@ static inline UInt64 NLCBAbsoluteNanoTime()
 {
     stopTime = NLCBAbsoluteNanoTime();
     self.whenStopped = [NSDate date];
+}
+
+- (NSString *)description
+{
+    NLCBProfileStatsFormatter *formatter = [[NLCBProfileStatsFormatter alloc] init];
+    NSString *result = [NSString stringWithFormat:@"%@: %@ - %@", self.whenStopped, self.name, [formatter stringFromStats:self]];
+    [formatter release];
+    return result;
 }
 
 

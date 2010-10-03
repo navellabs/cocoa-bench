@@ -88,4 +88,13 @@
     STAssertFalse(stats.duration == 0, nil);
 }
 
+- (void)testDescription
+{
+    stats.name = @"some profile";
+    stats.whenStopped = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
+    stats.startTime = 0;
+    stats.stopTime = 1;
+    STAssertEqualObjects([stats description], @"2000-12-31 19:00:00 -0500: some profile - 1 ns", nil);
+}
+
 @end
