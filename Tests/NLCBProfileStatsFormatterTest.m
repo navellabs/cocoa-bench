@@ -1,6 +1,6 @@
 /*
  Copyright (c) 2010 Navel Labs, Ltd.
-
+ 
  Permission is hereby granted, free of charge, to any person
  obtaining a copy of this software and associated documentation
  files (the "Software"), to deal in the Software without
@@ -9,10 +9,10 @@
  copies of the Software, and to permit persons to whom the
  Software is furnished to do so, subject to the following
  conditions:
-
+ 
  The above copyright notice and this permission notice shall be
  included in all copies or substantial portions of the Software.
-
+ 
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -23,39 +23,45 @@
  OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#import <Foundation/Foundation.h>
-#include <mach/clock.h>
+#import <SenTestingKit/SenTestingKit.h>
+#import "NLCBProfileStatsFormatter.h"
+#import "NLCBProfileStatsStub.h"
 
-#include "NLCBProfileStats.h"
-
-
-@interface NLCocoaBench : NSObject {
-    NSMutableArray *activeProfileNames;
-    NSMutableArray *allProfileNames;
-    NSMutableDictionary *profileStats;
+@interface NLCBProfileStatsFormatterTest : SenTestCase {
+    NLCBProfileStatsFormatter *formatter;
+    NLCBProfileStatsStub *stats;
 }
-
-@property (nonatomic, readonly) NSArray *activeProfileNames;
-@property (nonatomic, readonly) NSString *summary;
-
-- (void)startProfile:(NSString *)profileName;
-- (void)finishProfile:(NSString *)profileName;
-- (UInt64)profileTime:(NSString *)profileName;
-
-#ifdef __BLOCKS__
-
-typedef void (^NLCocoaBenchBlock)();
-
-- (void)profile:(NSString *)profileName block:(NLCocoaBenchBlock)block;
-
-#endif
 
 @end
 
 
-@interface NLCocoaBenchSummaryFormatter : NSObject {
+@implementation NLCBProfileStatsFormatterTest
+
+- (void)setUp
+{
+    stats = [NLCBProfileStatsStub stub];
+    formatter = [[[NLCBProfileStatsFormatter alloc] init] autorelease];
 }
 
-- (NSString *)summarizeProfileNames:(NSArray *)names forStats:(NSDictionary *)stats;
+- (void)testFormattingLessThan1Second
+{
+    [stats setDuration:10];
+    NSString *stringTime = [formatter stringFromStats:stats];
+    STAssertEqualObjects(stringTime, @"10 ns", nil);
+}
+
+- (void)testFormattingGreaterThan1Millisecond
+{
+    [stats setDuration:1540000];
+    NSString *stringTime = [formatter stringFromStats:stats];
+    STAssertEqualObjects(stringTime, @"1.54 ms", nil);    
+}
+
+- (void)testFormattingGreaterThan1Second
+{
+    [stats setDuration:1542000000];
+    NSString *stringTime = [formatter stringFromStats:stats];
+    STAssertEqualObjects(stringTime, @"1.542 s", nil);    
+}
 
 @end

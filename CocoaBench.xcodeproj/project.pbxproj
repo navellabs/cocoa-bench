@@ -12,6 +12,8 @@
 		AB445AA61257DF4000ECF199 /* NLCBProfileStats.m in Sources */ = {isa = PBXBuildFile; fileRef = AB445AA51257DF4000ECF199 /* NLCBProfileStats.m */; };
 		AB445AAE1257DFAF00ECF199 /* NLCBProfileStatsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AB445AAD1257DFAF00ECF199 /* NLCBProfileStatsTest.m */; };
 		AB445ABC1257DFFB00ECF199 /* NLCBProfileStatsStub.m in Sources */ = {isa = PBXBuildFile; fileRef = AB445ABB1257DFFB00ECF199 /* NLCBProfileStatsStub.m */; };
+		AB445ACD1257E07500ECF199 /* NLCBProfileStatsFormatterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AB445ACC1257E07500ECF199 /* NLCBProfileStatsFormatterTest.m */; };
+		AB445AD41257E0C400ECF199 /* NLCBProfileStatsFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = AB445AD31257E0C400ECF199 /* NLCBProfileStatsFormatter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,9 @@
 		AB445AAD1257DFAF00ECF199 /* NLCBProfileStatsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCBProfileStatsTest.m; sourceTree = "<group>"; };
 		AB445ABA1257DFFB00ECF199 /* NLCBProfileStatsStub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLCBProfileStatsStub.h; sourceTree = "<group>"; };
 		AB445ABB1257DFFB00ECF199 /* NLCBProfileStatsStub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCBProfileStatsStub.m; sourceTree = "<group>"; };
+		AB445ACC1257E07500ECF199 /* NLCBProfileStatsFormatterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCBProfileStatsFormatterTest.m; sourceTree = "<group>"; };
+		AB445AD21257E0C400ECF199 /* NLCBProfileStatsFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLCBProfileStatsFormatter.h; sourceTree = "<group>"; };
+		AB445AD31257E0C400ECF199 /* NLCBProfileStatsFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCBProfileStatsFormatter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +68,7 @@
 				AB445AAD1257DFAF00ECF199 /* NLCBProfileStatsTest.m */,
 				AB445ABA1257DFFB00ECF199 /* NLCBProfileStatsStub.h */,
 				AB445ABB1257DFFB00ECF199 /* NLCBProfileStatsStub.m */,
+				AB445ACC1257E07500ECF199 /* NLCBProfileStatsFormatterTest.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -74,6 +80,8 @@
 				AB445A981257DF1B00ECF199 /* NLCocoaBench.m */,
 				AB445AA41257DF4000ECF199 /* NLCBProfileStats.h */,
 				AB445AA51257DF4000ECF199 /* NLCBProfileStats.m */,
+				AB445AD21257E0C400ECF199 /* NLCBProfileStatsFormatter.h */,
+				AB445AD31257E0C400ECF199 /* NLCBProfileStatsFormatter.m */,
 			);
 			path = CocoaBench;
 			sourceTree = "<group>";
@@ -160,6 +168,8 @@
 				AB445AA61257DF4000ECF199 /* NLCBProfileStats.m in Sources */,
 				AB445AAE1257DFAF00ECF199 /* NLCBProfileStatsTest.m in Sources */,
 				AB445ABC1257DFFB00ECF199 /* NLCBProfileStatsStub.m in Sources */,
+				AB445ACD1257E07500ECF199 /* NLCBProfileStatsFormatterTest.m in Sources */,
+				AB445AD41257E0C400ECF199 /* NLCBProfileStatsFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

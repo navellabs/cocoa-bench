@@ -24,7 +24,7 @@
  */
 
 #import "NLCocoaBench.h"
-#include <mach/mach_time.h>
+#import "NLCBProfileStatsFormatter.h"
 
 @interface NLCocoaBench ()
 
@@ -114,69 +114,6 @@
     return stats;
 }
 
-
-@end
-
-
-#pragma mark -
-#pragma mark NLCBProfileStatsFormatter
-
-
-@implementation NLCBProfileStatsFormatter
-
-
-#pragma mark Memory Management
-
-- (void)dealloc
-{
-    [numberFormatter release];
-    [super dealloc];
-}
-
-
-#pragma mark Initialization
-
-- (id)init
-{
-    if (self = [super init]) {
-        numberFormatter = [[NSNumberFormatter alloc] init];
-        [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    }
-    return self;
-}
-
-
-#pragma mark Public Methods
-
-- (NSString *)stringFromStats:(NLCBProfileStats *)stats
-{
-    NSDecimalNumber *scale = nil,
-        *newDuration = nil,
-        *duration = [[NSDecimalNumber alloc]initWithUnsignedLongLong:stats.duration];
-    NSString *units = nil;
-
-    if (stats.duration > kSecondScale) {
-        scale = [[NSDecimalNumber alloc] initWithUnsignedLong:kSecondScale];
-        newDuration = [duration decimalNumberByDividingBy:scale];
-        [scale release];
-        [duration release];
-        duration = [newDuration retain];
-        units = @"s";
-    } else if (stats.duration > kMillisecondScale) {
-        scale = [[NSDecimalNumber alloc] initWithUnsignedLong:kMillisecondScale];
-        newDuration = [duration decimalNumberByDividingBy:scale];
-        [scale release];
-        [duration release];
-        duration = [newDuration retain];
-        units = @"ms";
-    } else {
-        units = @"ns";
-    }
-
-    NSString *numberString = [numberFormatter stringFromNumber:duration];
-    [duration release];
-    return [NSString stringWithFormat:@"%@ %@", numberString, units];
-}
 
 @end
 
