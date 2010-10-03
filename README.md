@@ -29,7 +29,32 @@ time and `NSLog()` the summary when you're ready to go!
     */
 
 
-### Example 2 - Nested wrapping ###
+### Example 2 - More than one profile ###
+
+    // Tell the global cocoa bench object to start profiling
+    [NLCocoaBench startProfile:@"wholeOperation"];
+
+    // Do some first part of a long operation
+
+    // Nest this inner profile benchmark
+    [NLCocoabench startProfile:@"innerOperation"];
+    // Do a smaller part of the larger operation...
+    [NLCocoaBench finishProfile:@"innerOperation"];
+
+    // Stop this first profile
+    [NLCocoaBench finishProfile:@"wholeOperation"];
+
+    // Dump the summary of the benchmark to the console
+    NSLog(@"%@", [NLCocoaBench summary]);
+
+    /*
+      Outputs something like:
+
+      Cocoa Bench Summary:
+      wholeOperation - 90 ms
+      innerOperation - 30 ns
+    */
+
 
 ### Example 3 - Block syntax! ###
 
