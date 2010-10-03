@@ -40,12 +40,6 @@
     stats = [[[NLCBProfileStats alloc] init] autorelease];
 }
 
-- (void)testProfileNameProperty
-{
-    stats.name = @"someName";
-    STAssertEqualObjects(stats.name, @"someName", nil);
-}
-
 - (void)testProfileStartTimeProperty
 {
     stats.startTime = 1;

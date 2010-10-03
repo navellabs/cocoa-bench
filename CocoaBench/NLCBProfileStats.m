@@ -27,17 +27,7 @@
 
 @implementation NLCBProfileStats
 
-@synthesize name;
 @synthesize startTime, stopTime;
-
-
-#pragma mark Memory Management
-
-- (void)dealloc
-{
-    self.name = nil;
-    [super dealloc];
-}
 
 
 static inline UInt64 NLCBAbsoluteNanoTime()
