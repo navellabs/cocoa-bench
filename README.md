@@ -63,14 +63,6 @@ just:
     #import "NLCocoaBench.h"
 
 
-Gotchas
--------
-
-  - If you start a profile of a same name to one you started and finished
-    earlier, it's previous information will be overwritten.
-  - Don't call `summary` until you've finished all the open profiles.
-
-
 License
 -------
 
