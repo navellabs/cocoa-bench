@@ -24,17 +24,22 @@
  */
 
 #import "NLCBProfileStats.h"
+#include <mach/mach.h>
+#include <mach/mach_time.h>
+#include <unistd.h>
 
 @implementation NLCBProfileStats
 
 @synthesize startTime, stopTime;
 
+static mach_timebase_info_data_t timebase;
 
 static inline UInt64 NLCBAbsoluteNanoTime()
 {
+    mach_timebase_info_data_t timebase;
+    (void) mach_timebase_info(&timebase);
     UInt64 time = mach_absolute_time();
-    Nanoseconds timeNano = AbsoluteToNanoseconds(*(AbsoluteTime *) &time);
-    return *(uint64_t *)&timeNano;
+    return ((double)(time)) * ((double)timebase.numer) / ((double)timebase.denom);
 }
 
 #pragma mark Public Methods
