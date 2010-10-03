@@ -1,6 +1,38 @@
 CocoaBench
 ==========
 
+CocoaBench is a quick and dirty mechanism to benchmark chunks of code
+and generate a text summary. Just wrap it around the code you want to
+time and `NSLog()` the summary when you're ready to go!
+
+### Example 1 - Wrapping around code ###
+
+    // Tell the global cocoa bench object to start profiling
+    // with a given name
+    [NLCocoaBench startProfile:@"longRunningOperation"];
+
+    for (NSString *values in strings) {
+        // Do some expensive operation over and over...
+    }
+
+    // Tell cocoa bench that you're done with this profile.
+    [NLCocoaBench finishProfile:@"longRunningOperation"];
+
+    // Dump the summary of the benchmark to the console
+    NSLog(@"%@", [NLCocoaBench summary]);
+
+    /*
+      Outputs something like:
+
+      Cocoa Bench Summary:
+      longRunningOperation - 30 ns
+    */
+
+
+### Example 2 - Nested wrapping ###
+
+### Example 3 - Block syntax! ###
+
 
 License
 -------
