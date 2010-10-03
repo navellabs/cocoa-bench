@@ -32,9 +32,19 @@
 
 @implementation NLCBProfileStats
 
+@synthesize name;
 @synthesize startTime, stopTime;
 
 static mach_timebase_info_data_t timebase;
+
+#pragma mark Memory Management
+
+- (void)dealloc
+{
+    self.name = nil;
+    [super dealloc];
+}
+
 
 static inline UInt64 NLCBAbsoluteNanoTime()
 {

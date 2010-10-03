@@ -26,9 +26,11 @@
  */
 
 @interface NLCBProfileStats : NSObject {
+    NSString *name;
     UInt64 startTime, stopTime;
 }
 
+@property (nonatomic, retain) NSString *name;
 @property (nonatomic) UInt64 startTime, stopTime;
 @property (nonatomic, readonly) UInt64 duration;
 
